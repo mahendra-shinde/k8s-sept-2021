@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: dbsecrets
+  namespace: dev-ns
+type: Opaque
+data:
+  DBURL: amRiYzpteXNxbDovL215ZGF0YXNlcnY6MzMwNi9kYjE=
+  DBUSER: bWFoZW5kcmE=
+  DBPASS: cGFzc0AxMjM0

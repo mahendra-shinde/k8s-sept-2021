@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mypod
+  namespace: dev-ns
+  labels:
+    name: myapp
+    version: '1.0'
+spec:
+  containers:
+  - name: c1
+    image: mahendrshinde/myweb:1
+    envFrom:
+      - configMapRef:
+          name: dbconfig
+    resources:
+      requests:
+        memory: "32Mi"
+        cpu: "100m"
+      limits:
+        memory: "64Mi"
+        cpu: "200m"
+    ports:
+      - containerPort: 80
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: dev-ns
+  name: dbconfig
+data:
+  DBURL: jdbc:mysql://mydataserv:3306/db1
+  DBUSER: mahendra
+  DBPASS: pass@1234
+  

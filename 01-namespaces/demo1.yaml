@@ -1,0 +1,18 @@
+##Header 
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: dev-ns
+##Body ( spec )
+## Namespace has NO "spec" or body elements!
+# Three Hyphens are used to create multiple SEGEMENTS in single YAML
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: prod-ns
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: staging-ns

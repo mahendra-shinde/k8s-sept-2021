@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: dev-ns
+  name: dbconfig
+data:
+  DBURL: jdbc:mysql://mydataserv:3306/db1
+  DBUSER: mahendra
+  DBPASS: pass@1234
+  
