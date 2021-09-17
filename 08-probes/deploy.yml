@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: probe-demo
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: demo1
+  template:
+    metadata:
+      labels:
+        app: demo1
+    spec:
+      containers:
+      - name: web
+        image: mahendrshinde/myweb:1
+        startupProbe:
+          httpGet:
+            path: /
+            scheme: HTTP
+            port: 80
+          failureThreshold: 2
+          initialDelaySeconds: 20
+          periodSeconds: 20
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 80
+            scheme: HTTP
+          failureThreshold: 3
+          periodSeconds: 10
+
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: probe-demo-svc
+spec:
+  type: LoadBalancer
+  selector:
+    app: demo1
+  ports:
+    - port: 8081
+      targetPort: 80
